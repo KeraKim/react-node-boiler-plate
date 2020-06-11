@@ -1,66 +1,71 @@
-import React, {useState} from "react";
-import Axios from "axios";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../../_actions/user_action";
 
 const LoginPage = (props) => {
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const onChangeEmailHandler = (event) => {
-    setEmail(event.currentTarget.value)
-  }
+    setEmail(event.currentTarget.value);
+  };
 
   const onChangePasswordHandler = (event) => {
-    setPassword(event.currentTarget.value)
-  }
+    setPassword(event.currentTarget.value);
+  };
 
   const onSubmitHandler = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    const body ={
+    const body = {
       email: email,
-      password: password
-    }
+      password: password,
+    };
 
-    dispatch(loginUser(body)).then(response => {
-      if(response.payload.loginSuccess){
-        props.history.push('/')
+    dispatch(loginUser(body)).then((response) => {
+      if (response.payload.loginSuccess) {
+        props.history.push("/");
       } else {
-        alert("Error")
+        alert("Error");
       }
-    })
-  }
+    });
+  };
 
-  return(
-      <div style={{
+  return (
+    <div
+      style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
         height: "100vh",
-      }}>
-
-        <form style={{
-          display: "flex", flexDirection: 'column'
+      }}
+    >
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
         }}
         onSubmit={onSubmitHandler}
-        >
-          <label>Email</label>
-          <input type="email" value={email} onChange={onChangeEmailHandler} />
+      >
+        <label>Email</label>
+        <input type="email" value={email} onChange={onChangeEmailHandler} />
 
-          <label>Password</label>
-          <input type="Password" value={password} onChange={onChangePasswordHandler} />
+        <label>Password</label>
+        <input
+          type="Password"
+          value={password}
+          onChange={onChangePasswordHandler}
+        />
 
-          <br />
+        <br />
 
-          <button>Login</button>
+        <button>Login</button>
+      </form>
+    </div>
+  );
+};
 
-        </form>
-      </div>
-  )
-}
-
-export default LoginPage
+export default LoginPage;
