@@ -24,8 +24,7 @@ const Auth = (SpecificComponent, option, adminRout = null) => {
           }
         }
       })
-
-    }, []);
+    });
 
     return (
         <SpecificComponent />
