@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import {withRouter} from "react-router-dom";
 
 const LandingPage = (props) => {
 
@@ -29,4 +30,4 @@ const LandingPage = (props) => {
   );
 };
 
-export default LandingPage;
+export default withRouter(LandingPage);
