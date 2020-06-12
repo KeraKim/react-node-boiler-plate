@@ -1,6 +1,18 @@
 import React from "react";
+import axios from "axios";
 
-const LandingPage = () => {
+const LandingPage = (props) => {
+
+  const logOut = () => {
+    axios.get(`/api/users/logout`).then(response => {
+      if(response.data.success) {
+        props.history.push("/login")
+      } else {
+        alert("로그아웃 하는데 실패하였습니다")
+      }
+    })
+  }
+
   return (
     <div
       style={{
@@ -12,6 +24,7 @@ const LandingPage = () => {
       }}
     >
       <h2>시작 페이지</h2>
+      <button onClick={logOut}>로그아웃</button>
     </div>
   );
 };
